@@ -48,7 +48,20 @@ public class MainActivity extends Activity {
         myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
 
-
+        /**
+         * things to work on
+         * Speaker and mic
+         * NFC
+         * Bluetooth
+         * accelerometer
+         * buttons (the thing will tell you what buttons you're pressing
+         * camera (it will just open the camera. that away the person can see if the last owner messed that up)
+         *
+         * I added a basic AlertDialog on each one, but they have to be edited.
+         *
+         *
+         * Another thing that needs to be worked on is the UGI.
+         */
 
 
 
@@ -155,7 +168,38 @@ public class MainActivity extends Activity {
             //speaker
         speaker.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        c);
 
+                // set title
+                alertDialogBuilder.setTitle("Test the speaker and mic function");
+
+                // set dialog message
+                alertDialogBuilder
+                        .setMessage("Please make sure you have Google Maps installed on your phone. By pressing I understand, your device will open Google Maps. From here, you will be able to see if your GPS works at all, and how good is it.")
+                        .setCancelable(false)
+                                //set right button
+                        .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // This will take the person to the maps app.
+
+
+                            }
+                        })
+                                //set left button
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // if this button is clicked, just close
+                                // the dialog box and do nothing
+                                dialog.cancel();
+                            }
+                        });
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
             }
         });
 
@@ -283,35 +327,190 @@ public class MainActivity extends Activity {
             //nfc
         nfc.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        c);
 
+                // set title
+                alertDialogBuilder.setTitle("Test the GPS function");
+
+                // set dialog message
+                alertDialogBuilder
+                        .setMessage("Please make sure you have Google Maps installed on your phone. By pressing I understand, your device will open Google Maps. From here, you will be able to see if your GPS works at all, and how good is it.")
+                        .setCancelable(false)
+                                //set right button
+                        .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // This will take the person to the maps app.
+
+
+                            }
+                        })
+                                //set left button
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // if this button is clicked, just close
+                                // the dialog box and do nothing
+                                dialog.cancel();
+                            }
+                        });
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
             }
         });
 
             //bluetooth
         bluetooth.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        c);
 
+                // set title
+                alertDialogBuilder.setTitle("Test the GPS function");
+
+                // set dialog message
+                alertDialogBuilder
+                        .setMessage("Please make sure you have Google Maps installed on your phone. By pressing I understand, your device will open Google Maps. From here, you will be able to see if your GPS works at all, and how good is it.")
+                        .setCancelable(false)
+                                //set right button
+                        .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // This will take the person to the maps app.
+
+
+                            }
+                        })
+                                //set left button
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // if this button is clicked, just close
+                                // the dialog box and do nothing
+                                dialog.cancel();
+                            }
+                        });
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
             }
         });
 
             //accelerometer
         accelerometer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        c);
 
+                // set title
+                alertDialogBuilder.setTitle("Test the GPS function");
+
+                // set dialog message
+                alertDialogBuilder
+                        .setMessage("Please make sure you have Google Maps installed on your phone. By pressing I understand, your device will open Google Maps. From here, you will be able to see if your GPS works at all, and how good is it.")
+                        .setCancelable(false)
+                                //set right button
+                        .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // This will take the person to the maps app.
+
+
+                            }
+                        })
+                                //set left button
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // if this button is clicked, just close
+                                // the dialog box and do nothing
+                                dialog.cancel();
+                            }
+                        });
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
             }
         });
 
             //Butttons
         buttons.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        c);
 
+                // set title
+                alertDialogBuilder.setTitle("Test the GPS function");
+
+                // set dialog message
+                alertDialogBuilder
+                        .setMessage("Please make sure you have Google Maps installed on your phone. By pressing I understand, your device will open Google Maps. From here, you will be able to see if your GPS works at all, and how good is it.")
+                        .setCancelable(false)
+                                //set right button
+                        .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // This will take the person to the maps app.
+
+
+                            }
+                        })
+                                //set left button
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // if this button is clicked, just close
+                                // the dialog box and do nothing
+                                dialog.cancel();
+                            }
+                        });
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
             }
         });
 
             //Camera
         cam.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        c);
 
+                // set title
+                alertDialogBuilder.setTitle("Test the GPS function");
+
+                // set dialog message
+                alertDialogBuilder
+                        .setMessage("Please make sure you have Google Maps installed on your phone. By pressing I understand, your device will open Google Maps. From here, you will be able to see if your GPS works at all, and how good is it.")
+                        .setCancelable(false)
+                                //set right button
+                        .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // This will take the person to the maps app.
+
+
+                            }
+                        })
+                                //set left button
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // if this button is clicked, just close
+                                // the dialog box and do nothing
+                                dialog.cancel();
+                            }
+                        });
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
             }
         });
     }
@@ -319,6 +518,5 @@ public class MainActivity extends Activity {
     final Context c = this;
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(c, MainActivity.class));
-        finish();
+
     }}
