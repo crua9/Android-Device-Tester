@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 /**
@@ -16,8 +17,16 @@ public class Screen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.screen);
 
+        //Bright
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        lp.screenBrightness = 1.0f; // 0.0 - 1.0
+        getWindow().setAttributes(lp);
+
+        //ID
         RelativeLayout layout = (RelativeLayout)findViewById(R.id.burnout);
         final Context c = this;
+
+        //Layout button
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

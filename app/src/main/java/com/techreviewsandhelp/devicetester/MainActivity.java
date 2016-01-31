@@ -1,14 +1,26 @@
 package com.techreviewsandhelp.devicetester;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.hardware.Camera;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.PopupWindow;
+import android.widget.Toast;
+
+import java.security.Policy;
 
 public class MainActivity extends Activity {
+    private Camera camera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +38,12 @@ public class MainActivity extends Activity {
         Button nfc = (Button)findViewById(R.id.nfc);
         Button bluetooth = (Button)findViewById(R.id.bluetooth);
         Button accelerometer = (Button)findViewById(R.id.accelerometer);
+        Button buttons = (Button)findViewById(R.id.buttons);
+        Button cam = (Button)findViewById(R.id.cam);
+
+
+
+
 
 
 
@@ -36,21 +54,97 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                /**
-                 * Maybe a good idea to have something come up to tell the person what to look for.
-                 * Something that the person has to say OK to so they have enough time to read it.
-                 */
 
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        c);
 
-                startActivity(new Intent(c, Screen.class));
-                finish();
+                // set title
+                alertDialogBuilder.setTitle("Test Screen Burn/Stuck Pixels");
+
+                // set dialog message
+                alertDialogBuilder
+                        .setMessage("This test is to allow you to see if there is any burnt in images. Once you click I understand, please look very close at the screen. You're looking for a ghost of an image or something (Screen Burn). Then click anywhere to come back to this page.")
+                        .setCancelable(false)
+                        //set right button
+                        .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // if this button is clicked, close
+                                // current activity
+                                startActivity(new Intent(c, Screen.class));
+                                finish();
+                            }
+                        })
+                        //set left button
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // if this button is clicked, just close
+                                // the dialog box and do nothing
+                                dialog.cancel();
+                            }
+                        });
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
             }
+
+
+
         });
 
             //light
         light.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {}
-        });
+            public void onClick(View v) {
+
+                boolean hasFlash;
+
+
+                hasFlash = getApplicationContext().getPackageManager()
+                        .hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+
+                if (!hasFlash) {
+                    AlertDialog alert = new AlertDialog.Builder(MainActivity.this)
+                            .create();
+                    alert.setTitle("ERROR!!!");
+                    alert.setMessage("Your device doesn't support flashlight");
+                    alert.setButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+
+                        }
+                    });
+                    alert.show();
+                } else {
+
+                                            //ON
+                    camera = Camera.open();
+                    Camera.Parameters p = camera.getParameters();
+                    p.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                    camera.setParameters(p);
+                    camera.startPreview();
+
+                        AlertDialog alert = new AlertDialog.Builder(MainActivity.this)
+                                    .create();
+                                alert.setTitle("Light");
+                                alert.setMessage("Your LED is on in the back and should be lighting up.");
+                                alert.setButton("OK", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                //Off
+                                final Camera.Parameters p = camera.getParameters();
+                                p.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+                                camera.setParameters(p);
+                                camera.stopPreview();
+                                camera.release();
+                                camera = null;
+
+
+                            }
+                        });
+                        alert.show();
+
+                    }}});
 
             //speaker
         speaker.setOnClickListener(new View.OnClickListener() {
@@ -87,6 +181,14 @@ public class MainActivity extends Activity {
             public void onClick(View v) {}
         });
 
+            //Butttons
+        buttons.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {}
+        });
 
+            //Camera
+        cam.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {}
+        });
     }
 }

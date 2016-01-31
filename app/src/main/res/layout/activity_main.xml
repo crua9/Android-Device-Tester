@@ -30,6 +30,16 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Camera"
+                android:id="@+id/cam" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Buttons"
+                android:id="@+id/buttons" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Speaker and mic"
                 android:id="@+id/speaker" />
 
