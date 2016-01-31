@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.net.Uri;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,9 +20,11 @@ import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import java.security.Policy;
+import java.util.Locale;
 
 public class MainActivity extends Activity {
     private Camera camera;
+    private Vibrator myVib;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,8 @@ public class MainActivity extends Activity {
         Button accelerometer = (Button)findViewById(R.id.accelerometer);
         Button buttons = (Button)findViewById(R.id.buttons);
         Button cam = (Button)findViewById(R.id.cam);
+
+        myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
 
 
@@ -158,23 +163,120 @@ public class MainActivity extends Activity {
         call.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //need to make a thing saying what the person should do to test the call
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:"));
-                startActivity(intent);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        c);
+
+                // set title
+                alertDialogBuilder.setTitle("Test the call");
+
+                // set dialog message
+                alertDialogBuilder
+                        .setMessage("In this test you will simply need to call someone. This will test if the radio works in the phone, the quality of the call, and how well you can hear it. During this test, please remember to test both the normal and the speaker quality. By pressing I understand, you will be taken to the calling app. When you're satisfy with the test. Please remember to come back to this app to finish the test.")
+                        .setCancelable(false)
+                                //set right button
+                        .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // This will take the person to the calling app.
+
+                                Intent intent = new Intent(Intent.ACTION_DIAL);
+                                intent.setData(Uri.parse("tel:"));
+                                startActivity(intent);
+                            }
+                        })
+                                //set left button
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // if this button is clicked, just close
+                                // the dialog box and do nothing
+                                dialog.cancel();
+                            }
+                        });
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
+
             }
         });
 
             //vibrate
         vibrate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        c);
 
+                // set title
+                alertDialogBuilder.setTitle("Test the vibrate function");
+
+                // set dialog message
+                alertDialogBuilder
+                        .setMessage("By pressing I understand, your phone should vibrate one time real quick. If this doesn't work, then it means your vibrate function on the phone may not work.")
+                        .setCancelable(false)
+                                //set right button
+                        .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // This will vibrate for a few seconds.
+
+                                myVib.vibrate(500);
+                            }
+                        })
+                                //set left button
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // if this button is clicked, just close
+                                // the dialog box and do nothing
+                                dialog.cancel();
+                            }
+                        });
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
             }
         });
 
             //gps
         gps.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        c);
 
+                // set title
+                alertDialogBuilder.setTitle("Test the GPS function");
+
+                // set dialog message
+                alertDialogBuilder
+                        .setMessage("Please make sure you have Google Maps installed on your phone. By pressing I understand, your device will open Google Maps. From here, you will be able to see if your GPS works at all, and how good is it.")
+                        .setCancelable(false)
+                                //set right button
+                        .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // This will take the person to the maps app.
+
+                                String s ="https://www.google.com/maps";
+
+                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(s));
+                                startActivity(browserIntent);
+                            }
+                        })
+                                //set left button
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // if this button is clicked, just close
+                                // the dialog box and do nothing
+                                dialog.cancel();
+                            }
+                        });
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
             }
         });
 
