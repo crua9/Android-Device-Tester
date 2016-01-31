@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -148,47 +149,74 @@ public class MainActivity extends Activity {
 
             //speaker
         speaker.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {}
+            public void onClick(View v) {
+
+            }
         });
 
             //call
         call.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {}
+            public void onClick(View v) {
+                //need to make a thing saying what the person should do to test the call
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:"));
+                startActivity(intent);
+            }
         });
 
             //vibrate
         vibrate.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {}
+            public void onClick(View v) {
+
+            }
         });
 
             //gps
         gps.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {}
+            public void onClick(View v) {
+
+            }
         });
 
             //nfc
         nfc.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {}
+            public void onClick(View v) {
+
+            }
         });
 
             //bluetooth
         bluetooth.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {}
+            public void onClick(View v) {
+
+            }
         });
 
             //accelerometer
         accelerometer.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {}
+            public void onClick(View v) {
+
+            }
         });
 
             //Butttons
         buttons.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {}
+            public void onClick(View v) {
+
+            }
         });
 
             //Camera
         cam.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {}
+            public void onClick(View v) {
+
+            }
         });
     }
-}
+    //Back Button
+    final Context c = this;
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(c, MainActivity.class));
+        finish();
+    }}

@@ -36,6 +36,7 @@ public class Screen extends Activity {
         });
 
 }
+    //Back Button
     final Context c = this;
     @Override
         public void onBackPressed() {
