@@ -2,12 +2,16 @@ package com.techreviewsandhelp.devicetester;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
+import android.location.LocationManager;
 import android.net.Uri;
+import android.nfc.NfcAdapter;
+import android.nfc.NfcManager;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -51,12 +55,9 @@ public class MainActivity extends Activity {
         /**
          * things to work on
          * Speaker and mic
-         * NFC
-         * Bluetooth
          * accelerometer
          * buttons (the thing will tell you what buttons you're pressing
-         * camera (it will just open the camera. that away the person can see if the last owner messed that up)
-         *
+         * 
          * I added a basic AlertDialog on each one, but they have to be edited.
          *
          *
@@ -286,63 +287,80 @@ public class MainActivity extends Activity {
             //gps
         gps.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                        c);
 
-                // set title
-                alertDialogBuilder.setTitle("Test the GPS function");
+                LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+                if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                            c);
 
-                // set dialog message
-                alertDialogBuilder
-                        .setMessage("Please make sure you have Google Maps installed on your phone. By pressing I understand, your device will open Google Maps. From here, you will be able to see if your GPS works at all, and how good is it.")
-                        .setCancelable(false)
-                                //set right button
-                        .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                // This will take the person to the maps app.
+                    // set title
+                    alertDialogBuilder.setTitle("Test the GPS function");
 
-                                String s ="https://www.google.com/maps";
+                    // set dialog message
+                    alertDialogBuilder
+                            .setMessage("The app can see your GPS is on. Please make sure you have Google Maps installed on your phone. By pressing I understand, your device will open Google Maps. From here, you will be able to see if your GPS works at all, and how good is it.")
+                            .setCancelable(false)
+                                    //set right button
+                            .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // This will take the person to the maps app.
 
-                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(s));
-                                startActivity(browserIntent);
-                            }
-                        })
-                                //set left button
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                // if this button is clicked, just close
-                                // the dialog box and do nothing
-                                dialog.cancel();
-                            }
-                        });
+                                    String s ="https://www.google.com/maps";
 
-                // create alert dialog
-                AlertDialog alertDialog = alertDialogBuilder.create();
+                                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(s));
+                                    startActivity(browserIntent);
+                                }
+                            })
+                                    //set left button
+                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // if this button is clicked, just close
+                                    // the dialog box and do nothing
+                                    dialog.cancel();
+                                }
+                            });
 
-                // show it
-                alertDialog.show();
+                    // create alert dialog
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+
+                    // show it
+                    alertDialog.show();
+                }else{
+                    Toast.makeText(MainActivity.this,
+                            "Your GPS is off, or your device doesn't have it. Please make sure it's on by going into the device settings.", Toast.LENGTH_LONG).show();
+
+                }
+
+
+
             }
         });
 
             //nfc
         nfc.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                NfcManager manager = (NfcManager) c.getSystemService(Context.NFC_SERVICE);
+                NfcAdapter adapter = manager.getDefaultAdapter();
+                if (adapter != null && adapter.isEnabled()) {
+                    // adapter exists and is enabled.
+
+
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                         c);
 
                 // set title
-                alertDialogBuilder.setTitle("Test the GPS function");
+                alertDialogBuilder.setTitle("Test the NFC function");
 
                 // set dialog message
                 alertDialogBuilder
-                        .setMessage("Please make sure you have Google Maps installed on your phone. By pressing I understand, your device will open Google Maps. From here, you will be able to see if your GPS works at all, and how good is it.")
+                        .setMessage("This app can see that your NFC is enable. Please feel free to use another NFC device to see how well it works.")
                         .setCancelable(false)
                                 //set right button
                         .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 // This will take the person to the maps app.
 
-
+                                dialog.cancel();
                             }
                         })
                                 //set left button
@@ -358,45 +376,64 @@ public class MainActivity extends Activity {
                 AlertDialog alertDialog = alertDialogBuilder.create();
 
                 // show it
-                alertDialog.show();
+                alertDialog.show();}
+                else{
+                    Toast.makeText(MainActivity.this,
+                            "Your NFC is off, or your device doesn't have it. Please make sure it's on by going into the device settings.", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
             //bluetooth
         bluetooth.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                        c);
 
-                // set title
-                alertDialogBuilder.setTitle("Test the GPS function");
+                BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+                if (mBluetoothAdapter == null) {
+                    // Device does not support Bluetooth
+                    Toast.makeText(MainActivity.this,
+                            "Your device doesn't have Bluetooth. ", Toast.LENGTH_LONG).show();
 
-                // set dialog message
-                alertDialogBuilder
-                        .setMessage("Please make sure you have Google Maps installed on your phone. By pressing I understand, your device will open Google Maps. From here, you will be able to see if your GPS works at all, and how good is it.")
-                        .setCancelable(false)
-                                //set right button
-                        .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                // This will take the person to the maps app.
+                } else {
+                    if (!mBluetoothAdapter.isEnabled()) {
+                        // Bluetooth is not enable
+                        Toast.makeText(MainActivity.this,
+                                "Your Bluetooth is off, or your device doesn't have it. Please make sure it's on by going into the device settings.", Toast.LENGTH_LONG).show();
+
+                    }else {AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                            c);
+
+                        // set title
+                        alertDialogBuilder.setTitle("Test the Bluetooth function");
+
+                        // set dialog message
+                        alertDialogBuilder
+                                .setMessage("Please make sure you have Google Maps installed on your phone. By pressing I understand, your device will open Google Maps. From here, you will be able to see if your GPS works at all, and how good is it.")
+                                .setCancelable(false)
+                                        //set right button
+                                .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        // This will take the person to the maps app.
 
 
-                            }
-                        })
-                                //set left button
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                // if this button is clicked, just close
-                                // the dialog box and do nothing
-                                dialog.cancel();
-                            }
-                        });
+                                    }
+                                })
+                                        //set left button
+                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        // if this button is clicked, just close
+                                        // the dialog box and do nothing
+                                        dialog.cancel();
+                                    }
+                                });
 
-                // create alert dialog
-                AlertDialog alertDialog = alertDialogBuilder.create();
+                        // create alert dialog
+                        AlertDialog alertDialog = alertDialogBuilder.create();
 
-                // show it
-                alertDialog.show();
+                        // show it
+                        alertDialog.show();}
+                }
+
             }
         });
 
@@ -483,18 +520,19 @@ public class MainActivity extends Activity {
                         c);
 
                 // set title
-                alertDialogBuilder.setTitle("Test the GPS function");
+                alertDialogBuilder.setTitle("Test the Camera");
 
                 // set dialog message
                 alertDialogBuilder
-                        .setMessage("Please make sure you have Google Maps installed on your phone. By pressing I understand, your device will open Google Maps. From here, you will be able to see if your GPS works at all, and how good is it.")
+                        .setMessage("In this test you're looking for any problems with the picture. Before you say the last owner scratched the lens, please make sure the lens is clean.")
                         .setCancelable(false)
                                 //set right button
                         .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 // This will take the person to the maps app.
 
-
+                                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+                                startActivityForResult(intent, 0);
                             }
                         })
                                 //set left button

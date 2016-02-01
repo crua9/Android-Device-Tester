@@ -7,6 +7,10 @@
     <uses-feature android:name="android.hardware.camera" />
     <!-- VIBRATE -->
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <!-- BlueTooth -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <!-- NFC -->
+    <uses-permission android:name="android.permission.NFC" />
 
     <application
         android:allowBackup="true"
