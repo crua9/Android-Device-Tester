@@ -57,7 +57,7 @@ public class MainActivity extends Activity {
          * Speaker and mic
          * accelerometer
          * buttons (the thing will tell you what buttons you're pressing
-         * 
+         *
          * I added a basic AlertDialog on each one, but they have to be edited.
          *
          *
