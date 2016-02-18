@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">Device Tester</string>
     <string name="b">1</string>
+
+    <string-array name="features_names">
+        <item>Screen Burnout and bad pixels</item>
+        <item>Light</item>
+        <item>Speaker and mic</item>
+        <item>Call</item>
+        <item>Vibrate</item>
+        <item>GPS</item>
+        <item>NFC</item>
+        <item>Bluetooth</item>
+        <item>Accelerometer</item>
+        <item>Buttons</item>
+        <item>Camera</item>
+    </string-array>
 </resources>
