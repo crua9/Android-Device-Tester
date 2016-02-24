@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 /**
  * Created by crua9 on 1/30/2016.
@@ -35,17 +36,21 @@ public class Screen extends Activity {
                 switch (counter){
                     case 0:{
                         layout.setBackgroundColor(getResources().getColor(R.color.clearRed));
+                        Toast.makeText(Screen.this, "Look for green or blue pixels. Then tap the screen.", Toast.LENGTH_SHORT).show();
                         break;
                     }
                     case 1:{
                         layout.setBackgroundColor(getResources().getColor(R.color.clearGreen));
+                        Toast.makeText(Screen.this, "Look for red or blue pixels. Then tap the screen.", Toast.LENGTH_SHORT).show();
                         break;
                     }
                     case 2:{
                         layout.setBackgroundColor(getResources().getColor(R.color.clearBlue));
+                        Toast.makeText(Screen.this, "Look for green or red pixels. Then tap the screen.", Toast.LENGTH_SHORT).show();
                         break;
                     }
                     case 3:{
+                        layout.setBackgroundColor(getResources().getColor(android.R.color.white));
                         finish();
                         break;
                     }

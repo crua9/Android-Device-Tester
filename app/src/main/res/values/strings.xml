@@ -15,4 +15,15 @@
         <item>Buttons</item>
         <item>Camera</item>
     </string-array>
+
+    <string name="burnout_message">"This test is to allow you to see if there is any burnt in images. Once you click I understand, please look very close at the screen. You're looking for a ghost of an image or something (Screen Burn). Also look for red, green or blue pixels (stuck pixels). Then click anywhere to change the color of screen. After blue color you will come back to this page."</string>
+    <string name="speaker_message">"This test allows you to check whether the speaker and microphone work. When you click 'I understand" the recorder will opens. Record your voice and then listen to it. Then tap back button, to return to this page."</string>
+    <string name="call_message">"In this test you will simply need to call someone. This will test if the radio works in the phone, the quality of the call, and how well you can hear it. During this test, please remember to test both the normal and the speaker quality. By pressing I understand, you will be taken to the calling app. When you're satisfy with the test. Please remember to come back to this app to finish the test."</string>
+    <string name="vibrate_message">"By pressing I understand, your phone should vibrate one time real quick. If this doesn't work, then it means your vibrate function on the phone may not work."</string>
+    <string name="gps_message">"The app can see your GPS is on. Please make sure you have Google Maps installed on your phone. By pressing I understand, your device will open Google Maps. From here, you will be able to see if your GPS works at all, and how good is it."</string>
+    <string name="nfc_message">"This app can see that your NFC is enable. Please feel free to use another NFC device to see how well it works."</string>
+    <string name="bluetooth_message">You will receive the message is bluetooth is OK.</string>
+    <string name="accelerometer_message">"This test allows you to check whether the accelerometer works. After clicking 'I understand', the page with our logo appears. Rotate the device in your hands. If the accelerometer works, the image must rotate too. Be sure autorotate is switched on in settings."</string>
+    <string name="buttons_message">"You should push every single button of your device. If you push the button, but the message on the screen doesn't change, then this button doesn't work. When you will push the Power button, the screen should switch off. When you push the Home button, your device should open your home screen. Then you should return to this app to continue testing."</string>
+    <string name="camera_message">"In this test you're looking for any problems with the picture. Before you say the last owner scratched the lens, please make sure the lens is clean."</string>
 </resources>

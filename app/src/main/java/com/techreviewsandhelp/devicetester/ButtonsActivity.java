@@ -1,14 +1,12 @@
 package com.techreviewsandhelp.devicetester;
 
-import android.app.ActivityOptions;
-import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ButtonsActivity extends AppCompatActivity {
     TextView keyPressedTextView;
@@ -24,6 +22,8 @@ public class ButtonsActivity extends AppCompatActivity {
             // Show the Up button in the action bar.
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        Toast.makeText(this, "Push every single button.", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -69,7 +69,7 @@ public class ButtonsActivity extends AppCompatActivity {
                 break;
             }
 
-            default: keyPressedTextView.setText("Some Button");
+            default: keyPressedTextView.setText("Pressed button code: "+keyCode);
         }
     return true;
     }

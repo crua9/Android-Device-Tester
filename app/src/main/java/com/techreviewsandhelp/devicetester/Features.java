@@ -6,35 +6,39 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.hardware.Camera;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.nfc.NfcAdapter;
 import android.nfc.NfcManager;
 import android.os.Vibrator;
+import android.provider.MediaStore;
 import android.widget.Toast;
 
 import java.util.Calendar;
 
 public class Features{
-    public final int SCREEN_BURNOUT = 0;
-    public final int LIGHT = 1;
-    public final int SPEAKER = 2;
-    public final int CALL = 3;
-    public final int VIBRATE = 4;
-    public final int GPS = 5;
-    public final int NFC = 6;
-    public final int BLUETOOTH = 7;
-    public final int ACCELEROMETER = 8;
-    public final int BUTTONS = 9;
-    public final int CAMERA = 10;
+    public static final int SCREEN_BURNOUT = 0;
+    public static final int LIGHT = 1;
+    public static final int SPEAKER = 2;
+    public static final int CALL = 3;
+    public static final int VIBRATE = 4;
+    public static final int GPS = 5;
+    public static final int NFC = 6;
+    public static final int BLUETOOTH = 7;
+    public static final int ACCELEROMETER = 8;
+    public static final int BUTTONS = 9;
+    public static final int CAMERA = 10;
 
     Context mContext;
     private Camera camera;
     private Vibrator myVib;
+    Resources resources;
 
     public Features(Context context){
         mContext = context;
+        resources = context.getResources();
     }
 
     public void runFeature(int name){
@@ -62,7 +66,7 @@ public class Features{
 
         // set dialog message
         alertDialogBuilder
-                .setMessage("This test is to allow you to see if there is any burnt in images. Once you click I understand, please look very close at the screen. You're looking for a ghost of an image or something (Screen Burn). Then click anywhere to come back to this page.")
+                .setMessage(resources.getString(R.string.burnout_message))
                 .setCancelable(false)
                         //set right button
                 .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
@@ -70,6 +74,7 @@ public class Features{
                         // if this button is clicked, close
                         // current activity
                         mContext.startActivity(new Intent(mContext, Screen.class));
+                        Toast.makeText(mContext, "Look for screen burn. Then tap the screen.", Toast.LENGTH_SHORT).show();
                     }
                 })
                         //set left button
@@ -146,13 +151,15 @@ public class Features{
 
         // set dialog message
         alertDialogBuilder
-                .setMessage("Speaker, mic")
+                .setMessage(resources.getString(R.string.speaker_message))
                 .setCancelable(false)
                         //set right button
                 .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Intent intent = new Intent(mContext,SpeakerActivity.class);
+                        //Intent intent = new Intent(mContext,SpeakerActivity.class);
+                        Intent intent = new Intent( MediaStore.Audio.Media.RECORD_SOUND_ACTION);
                         mContext.startActivity(intent);
+                        Toast.makeText(mContext, "Record your voice, then listen to it.", Toast.LENGTH_SHORT).show();
                     }
                 })
                         //set left button
@@ -181,7 +188,7 @@ public class Features{
 
         // set dialog message
         alertDialogBuilder
-                .setMessage("In this test you will simply need to call someone. This will test if the radio works in the phone, the quality of the call, and how well you can hear it. During this test, please remember to test both the normal and the speaker quality. By pressing I understand, you will be taken to the calling app. When you're satisfy with the test. Please remember to come back to this app to finish the test.")
+                .setMessage(resources.getString(R.string.call_message))
                 .setCancelable(false)
                         //set right button
                 .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
@@ -191,6 +198,7 @@ public class Features{
                         Intent intent = new Intent(Intent.ACTION_DIAL);
                         intent.setData(Uri.parse("tel:"));
                         mContext.startActivity(intent);
+                        Toast.makeText(mContext, "Call to someone.", Toast.LENGTH_SHORT).show();
                     }
                 })
                         //set left button
@@ -219,7 +227,7 @@ public class Features{
 
         // set dialog message
         alertDialogBuilder
-                .setMessage("By pressing I understand, your phone should vibrate one time real quick. If this doesn't work, then it means your vibrate function on the phone may not work.")
+                .setMessage(resources.getString(R.string.vibrate_message))
                 .setCancelable(false)
                         //set right button
                 .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
@@ -256,7 +264,7 @@ public class Features{
 
             // set dialog message
             alertDialogBuilder
-                    .setMessage("The app can see your GPS is on. Please make sure you have Google Maps installed on your phone. By pressing I understand, your device will open Google Maps. From here, you will be able to see if your GPS works at all, and how good is it.")
+                    .setMessage(resources.getString(R.string.gps_message))
                     .setCancelable(false)
                             //set right button
                     .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
@@ -305,7 +313,7 @@ public class Features{
 
             // set dialog message
             alertDialogBuilder
-                    .setMessage("This app can see that your NFC is enable. Please feel free to use another NFC device to see how well it works.")
+                    .setMessage(resources.getString(R.string.nfc_message))
                     .setCancelable(false)
                             //set right button
                     .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
@@ -356,14 +364,12 @@ public class Features{
 
                 // set dialog message
                 alertDialogBuilder
-                        .setMessage("Bluetooth")
+                        .setMessage(resources.getString(R.string.bluetooth_message))
                         .setCancelable(false)
                                 //set right button
                         .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                // This will take the person to the maps app.
-
-
+                                Toast.makeText(mContext,"Bluetooth is OK.",Toast.LENGTH_LONG).show();
                             }
                         })
                                 //set left button
@@ -392,7 +398,7 @@ public class Features{
 
         // set dialog message
         alertDialogBuilder
-                .setMessage("")
+                .setMessage(resources.getString(R.string.accelerometer_message))
                 .setCancelable(false)
                         //set right button
                 .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
@@ -426,7 +432,7 @@ public class Features{
 
         // set dialog message
         alertDialogBuilder
-                .setMessage("Buttons")
+                .setMessage(R.string.buttons_message)
                 .setCancelable(false)
                         //set right button
                 .setPositiveButton("I understand", new DialogInterface.OnClickListener() {
@@ -460,7 +466,7 @@ public class Features{
 
         // set dialog message
         alertDialogBuilder
-                .setMessage("In this test you're looking for any problems with the picture. Before you say the last owner scratched the lens, please make sure the lens is clean.")
+                .setMessage(resources.getString(R.string.camera_message))
                 .setCancelable(false)
                         //set right button
                 .setPositiveButton("I understand", new DialogInterface.OnClickListener() {

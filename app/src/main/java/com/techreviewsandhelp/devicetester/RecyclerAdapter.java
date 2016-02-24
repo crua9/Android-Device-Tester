@@ -1,6 +1,7 @@
 package com.techreviewsandhelp.devicetester;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.xmlpull.v1.XmlPullParser;
 
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
@@ -26,6 +29,52 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public void onBindViewHolder(RecyclerAdapter.ViewHolder holder, int position) {
         holder.textView.setText(featuresNames[position]);
+        switch (position){
+            case Features.SCREEN_BURNOUT: {
+                holder.imageView.setImageResource(R.drawable.ic_stay_primary_portrait_white_36dp);
+                break;
+            }
+            case Features.LIGHT: {
+                holder.imageView.setImageResource(R.drawable.ic_highlight_white_36dp);
+                break;
+            }
+            case Features.SPEAKER: {
+                holder.imageView.setImageResource(R.drawable.ic_speaker_white_36dp);
+                break;
+            }
+            case Features.CALL: {
+                holder.imageView.setImageResource(R.drawable.ic_call_white_36dp);
+                break;
+            }
+            case Features.VIBRATE: {
+                holder.imageView.setImageResource(R.drawable.ic_vibration_white_36dp);
+                break;
+            }
+            case Features.GPS: {
+                holder.imageView.setImageResource(R.drawable.ic_gps_fixed_white_36dp);
+                break;
+            }
+            case Features.NFC: {
+                holder.imageView.setImageResource(R.drawable.ic_nfc_white_36dp);
+                break;
+            }
+            case Features.BLUETOOTH: {
+                holder.imageView.setImageResource(R.drawable.ic_bluetooth_white_36dp);
+                break;
+            }
+            case Features.ACCELEROMETER: {
+                holder.imageView.setImageResource(R.drawable.ic_screen_rotation_white_36dp);
+                break;
+            }
+            case Features.BUTTONS: {
+                holder.imageView.setImageResource(R.drawable.ic_keyboard_white_36dp);
+                break;
+            }
+            case Features.CAMERA: {
+                holder.imageView.setImageResource(R.drawable.ic_photo_camera_white_36dp);
+                break;
+            }
+        }
         Log.d("Recycler", featuresNames[position]);
 
     }
