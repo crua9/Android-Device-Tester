@@ -20,8 +20,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.R
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         features = new Features(this);
         String[] featuresNames = getResources().getStringArray(R.array.features_names);
@@ -38,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.R
         /**
          * things to work on
          * Speaker and mic
-         * accelerometer
+         * accelerometer (maybe a good idea to make an image of TRH logo and have it rotate)
          * buttons (the thing will tell you what buttons you're pressing
          *
          * I added a basic AlertDialog on each one, but they have to be edited.
