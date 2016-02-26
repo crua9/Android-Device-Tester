@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.R
         /**
          * things to work on
          * Speaker and mic
-         * accelerometer (maybe a good idea to make an image of TRH logo and have it rotate)
+         * accelerometer
          * buttons (the thing will tell you what buttons you're pressing
          *
          * I added a basic AlertDialog on each one, but they have to be edited.
