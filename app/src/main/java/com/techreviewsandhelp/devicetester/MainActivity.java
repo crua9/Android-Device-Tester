@@ -20,8 +20,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.R
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         features = new Features(this);
         String[] featuresNames = getResources().getStringArray(R.array.features_names);
