@@ -33,17 +33,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.R
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(itemAnimator);
 
-        /**
-         * things to work on
-         * Speaker and mic
-         * accelerometer (maybe a good idea to make an image of TRH logo and have it rotate)
-         * buttons (the thing will tell you what buttons you're pressing
-         *
-         * I added a basic AlertDialog on each one, but they have to be edited.
-         *
-         *
-         * Another thing that needs to be worked on is the UGI.
-         */
+       
     }
 
     @Override
