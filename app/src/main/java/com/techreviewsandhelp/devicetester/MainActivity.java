@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerAdapter.R
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(itemAnimator);
 
-       
+
     }
 
     @Override

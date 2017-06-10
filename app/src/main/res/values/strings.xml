@@ -14,6 +14,7 @@
         <item>Accelerometer</item>
         <item>Buttons</item>
         <item>Camera</item>
+        <item>Temp</item>
     </string-array>
 
     <string name="burnout_message">"This test is to allow you to see if there is any burnt in images. Once you click I understand, please look very close at the screen. You're looking for a ghost of an image or something (Screen Burn). Also look for red, green or blue pixels (stuck pixels). Then click anywhere to change the color of screen. After blue color you will come back to this page."</string>
